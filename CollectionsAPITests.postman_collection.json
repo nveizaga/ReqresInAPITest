@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "121453a7-314f-4ad5-b066-7ef3d29ee67b",
+		"name": "CollectionsAPITests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetUserList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "580e83bd-8d99-4601-9ff8-1656f8db471b",
+						"exec": [
+							"console.log(request);\r",
+							"\r",
+							"pm.test(\"Status Code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Verify if this email michael.lawson@reqres.in is in page2\" , function () {\r",
+							"    const verificaionEmail = jsonData.data.find\r",
+							"         (m => m.email === \"michael.lawson@reqres.in\")\r",
+							"    pm.expect(verificaionEmail)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
